@@ -25,6 +25,12 @@ export class BugreportController {
     return await this.bugreportService.findOne(+id);
   }
 
+  @Get('bug/:id')
+  @UseGuards(JwtAuthGuard)
+  async findBOne(@Param('id') id: string) {
+    return await this.bugreportService.findBOne(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBugreportDto: UpdateBugreportDto) {
     return this.bugreportService.update(+id, updateBugreportDto);

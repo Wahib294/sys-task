@@ -37,7 +37,7 @@ export class BugreportService {
   }
 
   findBOne(id: number): Promise<BugReport> {
-    return this.bugReportRepository.findOneBy({ id: id });
+    return this.bugReportRepository.findOne({where:{ id: id },relations: ['reporter', 'assignee']});
   }
 
   async findOne(staffId: number): Promise<BugReport[]> {

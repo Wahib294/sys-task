@@ -31,6 +31,9 @@ let BugreportController = class BugreportController {
     async findOne(id) {
         return await this.bugreportService.findOne(+id);
     }
+    async findBOne(id) {
+        return await this.bugreportService.findBOne(+id);
+    }
     update(id, updateBugreportDto) {
         return this.bugreportService.update(+id, updateBugreportDto);
     }
@@ -61,6 +64,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], BugreportController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)('bug/:id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BugreportController.prototype, "findBOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

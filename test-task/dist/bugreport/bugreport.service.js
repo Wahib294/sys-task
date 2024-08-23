@@ -42,7 +42,7 @@ let BugreportService = class BugreportService {
         });
     }
     findBOne(id) {
-        return this.bugReportRepository.findOneBy({ id: id });
+        return this.bugReportRepository.findOne({ where: { id: id }, relations: ['reporter', 'assignee'] });
     }
     async findOne(staffId) {
         const staff = await this.staffService.findOne(staffId);

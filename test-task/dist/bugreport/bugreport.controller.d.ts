@@ -7,6 +7,7 @@ export declare class BugreportController {
     create(createBugreportDto: CreateBugreportDto): Promise<import("./entities/bugreport.entity").BugReport>;
     findAll(): Promise<import("./entities/bugreport.entity").BugReport[]>;
     findOne(id: string): Promise<import("./entities/bugreport.entity").BugReport[]>;
+    findBOne(id: string): Promise<import("./entities/bugreport.entity").BugReport>;
     update(id: string, updateBugreportDto: UpdateBugreportDto): Promise<import("./entities/bugreport.entity").BugReport>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

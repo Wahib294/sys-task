@@ -93,6 +93,7 @@ export default function Staff(){
         <div className="container">
             <Button variant="contained" onClick={() => navigate('/dashboard')} className='mt-4'><h1 className='text-white '>Bugs Report</h1></Button>
             <Button variant="contained" onClick={() => {localStorage.clear(); navigate('/')}} className='absolute mt-4 left-[1280px]'><h1 className='text-red-400 font-extrabold'>Log Out</h1></Button>
+            <div className=' mt-20 '>
             {groupedData.length > 0 ? (
                 groupedData.map((group, index) => (
                     <div key={index} className="row">
@@ -107,9 +108,10 @@ export default function Staff(){
                         ))}
                     </div>
                 ))
-            ) : (
-                <p>No Bugs Assigned</p>
+                ) : (
+                    <p>No Bugs Assigned</p>
             )}
+            </div>
         </div>
     );
 };

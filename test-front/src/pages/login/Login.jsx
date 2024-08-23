@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button} from '@material-ui/core'
 import "./login.css"
 import { Link } from 'react-router-dom'
@@ -10,6 +10,12 @@ const Login=()=>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    useEffect(()=>{
+        if (localStorage.getItem('access_token')) {
+            console.log("Token FOund")
+            navigate('/dashboard');
+        }
+    },[])
     function handleChange(event){
         setrole(event.target.value);
       }

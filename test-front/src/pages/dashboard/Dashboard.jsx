@@ -104,6 +104,7 @@ export const Dashboard = () => {
         <div className="container">
             <Button variant="contained" onClick={() => navigate('/staff')} className='mt-4'><h1 className='text-white '>Staff List</h1></Button>
             <Button variant="contained" onClick={() => {localStorage.clear(); navigate('/')}} className='absolute mt-4 left-[1280px]'><h1 className='text-red-400 font-extrabold'>Log Out</h1></Button>
+            <div className='mt-20'>
             {groupedData.length > 0 ? (
                 groupedData.map((group, index) => (
                     <div key={index} className="row">
@@ -120,9 +121,10 @@ export const Dashboard = () => {
                         ))}
                     </div>
                 ))
-            ) : (
-                <p>No Bugs Assigned</p>
-            )}
+                ) : (
+                    <p>No Bugs Assigned</p>
+                    )}
+            S</div>
         </div>
     );
 };
