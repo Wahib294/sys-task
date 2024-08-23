@@ -124,7 +124,7 @@ export const Dashboard = () => {
                 ) : (
                     <p>No Bugs Assigned</p>
                     )}
-            S</div>
+            </div>
         </div>
     );
 };
