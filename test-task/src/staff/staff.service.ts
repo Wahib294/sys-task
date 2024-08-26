@@ -39,10 +39,11 @@ export class StaffService {
   async update(id: number, updateStaffDto: UpdateStaffDto) {
     let staff = new Staff();
     let role = await this.roleService.findOne(updateStaffDto.role);
+    let pass = await this.staffRepository.findOne({where :{ id: id }});
     staff.id = id;
     staff.username = updateStaffDto.username;
     staff.email = updateStaffDto.email;
-    staff.password = updateStaffDto.password;
+    staff.password = pass.password;
     staff.role = role;
     return this.staffRepository.save(staff);
   }

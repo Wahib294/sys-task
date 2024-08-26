@@ -98,12 +98,12 @@ export default function Staff(){
                 groupedData.map((group, index) => (
                     <div key={index} className="row">
                         {group.map((bug) => (
-                            <div key={bug.id} className="bugcard">
+                            <div key={bug.id} id={bug.id} className="bugcard cursor-pointer" onClick={(e)=>console.log(e.target.id)}>
                                 <center><h1 className='font-extrabold text-lg mb-4'>{bug.role.name}</h1></center>
                                 <p className='text-sky-400 font-bold'>{bug.username}</p>
                                 <p className='text-slate-300 mt-6'>Email: {bug.email}</p>
                                 <DeleteForeverIcon className='cursor-pointer mt-4' sx={{color:pink[500]}}  onClick={handledelete(bug.id)}/>
-                                <EditIcon className='cursor-pointer ml-[210px] mt-4' onClick={() => navigate(`/bugedit/?id=${bug.id}`)}/>
+                                <EditIcon className='cursor-pointer ml-[210px] mt-4' onClick={() => navigate(`/staffedit/?id=${bug.id}`)}/>
                                 </div>
                         ))}
                     </div>
