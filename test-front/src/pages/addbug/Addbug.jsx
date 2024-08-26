@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Box, Modal, Typography } from '@mui/material';
 function Addbug(){
     const [description, setDescription] = useState('');
     const [title, setTitle] = useState('');
@@ -13,9 +12,7 @@ function Addbug(){
     const [reporter, setReporter] = useState('');
     const [allDev, setAllDev] = useState([]);
     const [allQA, setAllQA] = useState([]);
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+
     const navigate = useNavigate();
     const handleChange = (event) => {
         setAssigned(event.target.value);

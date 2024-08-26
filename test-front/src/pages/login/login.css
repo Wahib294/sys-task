@@ -97,7 +97,7 @@ body {
 }	
 
 .bugcard {
-    width: 300px; /* Set a fixed width for the cards */
+    width: 300px;
     padding: 20px;
     background: rgba(0, 0, 0, 0.4);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);

@@ -17,12 +17,14 @@ export class BugreportService {
 
   async create(createBugreportDto: CreateBugreportDto): Promise<BugReport> {
     let bugReport = new BugReport();
+    let assignee = await this.staffService.findOne(createBugreportDto.assignee);
+    let reporter = await this.staffService.findOne(createBugreportDto.reporter);
     bugReport.id = createBugreportDto.id;
     bugReport.title = createBugreportDto.title;
     bugReport.description = createBugreportDto.description;
     bugReport.status = createBugreportDto.status;
-    bugReport.assignee = createBugreportDto.assignee;
-    bugReport.reporter = createBugreportDto.reporter;
+    bugReport.assignee = assignee;
+    bugReport.reporter = reporter;
     bugReport.createdAt = createBugreportDto.createdAt;
     bugReport.updatedAt = createBugreportDto.updatedAt;
 
@@ -51,13 +53,13 @@ export class BugreportService {
     if (staff.role.name === 'QA') {
       // If staff is QA, find bug reports where the reporterID matches the staffId
       return this.bugReportRepository.find({
-        where: { reporter: staff.id },
-        relations: ['reporter', 'assignee'],
+        where: { reporter: {id: staff.id} },
       });
     } else if (staff.role.name === 'Developer') {
       // If staff is a Developer, find bug reports where the attendeeID matches the staffId
+      console.log(staff.id);
       return this.bugReportRepository.find({
-        where: { assignee: staff.id },
+        where: { assignee: {id: staff.id} },
         relations: ['reporter', 'assignee'],
       });
     } else {
@@ -73,8 +75,8 @@ export class BugreportService {
     bugReport.title = updateBugreportDto.title;
     bugReport.description = updateBugreportDto.description;
     bugReport.status = updateBugreportDto.status;
-    bugReport.assignee = assignee.id;
-    bugReport.reporter = reporter.id;
+    bugReport.assignee = assignee;
+    bugReport.reporter = reporter;
     bugReport.createdAt = updateBugreportDto.createdAt;
     bugReport.updatedAt = updateBugreportDto.updatedAt;
     return this.bugReportRepository.save(bugReport);

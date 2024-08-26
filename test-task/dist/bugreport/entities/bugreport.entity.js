@@ -34,11 +34,11 @@ __decorate([
 ], BugReport.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => staff_entity_1.Staff, staff => staff.assignedBugReports),
-    __metadata("design:type", Number)
+    __metadata("design:type", staff_entity_1.Staff)
 ], BugReport.prototype, "assignee", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => staff_entity_1.Staff, staff => staff.reportedBugReports),
-    __metadata("design:type", Number)
+    __metadata("design:type", staff_entity_1.Staff)
 ], BugReport.prototype, "reporter", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),

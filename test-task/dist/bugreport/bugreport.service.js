@@ -25,12 +25,14 @@ let BugreportService = class BugreportService {
     }
     async create(createBugreportDto) {
         let bugReport = new bugreport_entity_1.BugReport();
+        let assignee = await this.staffService.findOne(createBugreportDto.assignee);
+        let reporter = await this.staffService.findOne(createBugreportDto.reporter);
         bugReport.id = createBugreportDto.id;
         bugReport.title = createBugreportDto.title;
         bugReport.description = createBugreportDto.description;
         bugReport.status = createBugreportDto.status;
-        bugReport.assignee = createBugreportDto.assignee;
-        bugReport.reporter = createBugreportDto.reporter;
+        bugReport.assignee = assignee;
+        bugReport.reporter = reporter;
         bugReport.createdAt = createBugreportDto.createdAt;
         bugReport.updatedAt = createBugreportDto.updatedAt;
         return this.bugReportRepository.save(bugReport);
@@ -51,13 +53,13 @@ let BugreportService = class BugreportService {
         }
         if (staff.role.name === 'QA') {
             return this.bugReportRepository.find({
-                where: { reporter: staff.id },
-                relations: ['reporter', 'assignee'],
+                where: { reporter: { id: staff.id } },
             });
         }
         else if (staff.role.name === 'Developer') {
+            console.log(staff.id);
             return this.bugReportRepository.find({
-                where: { assignee: staff.id },
+                where: { assignee: { id: staff.id } },
                 relations: ['reporter', 'assignee'],
             });
         }
@@ -73,8 +75,8 @@ let BugreportService = class BugreportService {
         bugReport.title = updateBugreportDto.title;
         bugReport.description = updateBugreportDto.description;
         bugReport.status = updateBugreportDto.status;
-        bugReport.assignee = assignee.id;
-        bugReport.reporter = reporter.id;
+        bugReport.assignee = assignee;
+        bugReport.reporter = reporter;
         bugReport.createdAt = updateBugreportDto.createdAt;
         bugReport.updatedAt = updateBugreportDto.updatedAt;
         return this.bugReportRepository.save(bugReport);
